@@ -7,11 +7,21 @@ from blog.models import *
 
 
 def homepage(request):
-	videoid = 'vAX902tSXkg'
-	return render(request, 'homepage.html', {'videoid': videoid})
+
+	getvideo = Videopost.objects.all()
+
+	context = {'getvideo' : getvideo}
+	return render(request, 'homepage.html', context)
 
 def aboutpage(request):
 	return render(request, 'about.html')
 
 def resumepage(request):
 	return render(request, 'resume.html')
+
+def videopost(request, title):
+	
+	getvideo = get_object_or_404(Videopost, title=title)
+
+	context = {'getvideo' : getvideo}
+	return render(request, 'vidpost.html', context)

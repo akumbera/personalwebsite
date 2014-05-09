@@ -16,4 +16,5 @@ urlpatterns = patterns('',
     url(r'^$', homepage),
     url(r'^about/$', aboutpage),
     url(r'^resume/$', resumepage),
+    url(r'^(?P<title>\w+)/$', videopost),
 )
