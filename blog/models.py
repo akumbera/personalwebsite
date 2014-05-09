@@ -15,7 +15,7 @@ class Videopost(models.Model):
 	def get_absolute_url(self):
 		return reverse('blog.views.videopost', args=[self.title])
 
-class VideoForm(ModelForm):
-	class Meta:
-		model = Videopost
-		fields = ['title','post','videoid']
+#class VideoForm(ModelForm):
+#	class Meta:
+#		model = Videopost
+#		fields = ['title','post','videoid']

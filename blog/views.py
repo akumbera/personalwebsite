@@ -1,9 +1,10 @@
 import re
 
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
 from blog.models import *
+from blog.forms import *
 
 
 def homepage(request):
@@ -25,3 +26,21 @@ def videopost(request, title):
 
 	context = {'getvideo' : getvideo}
 	return render(request, 'vidpost.html', context)
+
+def addvideo(request):
+
+	if request.method == "POST":
+		form = VideoForm(request.POST)
+		if form.is_valid():
+			title = form.cleaned_data['title']
+			post = form.cleaned_data['post']
+			videoid = form.cleaned_data['videoid']
+			form.save()
+			return redirect('success/')
+
+	else:
+		form = VideoForm()
+	return render(request, 'videoform.html', {'form' : form,})
+
+def successpage(request):
+	return render(request, 'successpage.html')
